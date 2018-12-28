@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="feb981b7-86a6-4d32-a652-454fb68fd43d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/util/src/main/java/cn/jerio/serializer/ProtostuffSerializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/util/src/main/java/cn/jerio/util/SerializeUtil.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/product-service/src/main/java/cn/jerio/product/redis/RedisService.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/product-web/src/main/java/cn/jerio/config/ProductWebConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-service/src/main/java/cn/jerio/product/redis/RedisPoolFactory.java" afterPath="$PROJECT_DIR$/product-service/src/main/java/cn/jerio/product/redis/RedisPoolFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util/pom.xml" afterPath="$PROJECT_DIR$/util/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/product-web/pom.xml" afterPath="$PROJECT_DIR$/product-web/pom.xml" />
     </list>
     <ignored path="seckill.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,7 +51,7 @@
       <file leaf-file-name="GoodsService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/product-api/src/main/java/cn/jerio/product/service/GoodsService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
+            <state relative-caret-position="95">
               <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
               <folding />
             </state>
@@ -98,7 +95,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
+            <state relative-caret-position="1045">
               <caret line="55" column="21" selection-start-line="46" selection-start-column="8" selection-end-line="55" selection-end-column="21" />
               <folding />
             </state>
@@ -110,73 +107,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="22819">
               <caret line="1307" column="38" selection-start-line="1307" selection-start-column="38" selection-end-line="1307" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#41675#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#6815#6816#0" expanded="false" />
-                <element signature="e#6866#6867#0" expanded="false" />
-                <element signature="e#10163#10164#0" expanded="false" />
-                <element signature="e#10219#10220#0" expanded="false" />
-                <element signature="e#11869#11870#0" expanded="false" />
-                <element signature="e#11924#11925#0" expanded="false" />
-                <element signature="e#14553#14554#0" expanded="false" />
-                <element signature="e#14588#14589#0" expanded="false" />
-                <element signature="e#15604#15605#0" expanded="false" />
-                <element signature="e#15634#15635#0" expanded="false" />
-                <element signature="e#15924#15925#0" expanded="false" />
-                <element signature="e#15971#15972#0" expanded="false" />
-                <element signature="e#16217#16218#0" expanded="false" />
-                <element signature="e#16254#16255#0" expanded="false" />
-                <element signature="e#16790#16791#0" expanded="false" />
-                <element signature="e#16821#16822#0" expanded="false" />
-                <element signature="e#17198#17199#0" expanded="false" />
-                <element signature="e#17240#17241#0" expanded="false" />
-                <element signature="e#17490#17491#0" expanded="false" />
-                <element signature="e#17528#17529#0" expanded="false" />
-                <element signature="e#17710#17711#0" expanded="false" />
-                <element signature="e#17737#17738#0" expanded="false" />
-                <element signature="e#17993#17994#0" expanded="false" />
-                <element signature="e#18033#18034#0" expanded="false" />
-                <element signature="e#18221#18222#0" expanded="false" />
-                <element signature="e#18250#18251#0" expanded="false" />
-                <element signature="e#18405#18406#0" expanded="false" />
-                <element signature="e#18436#18437#0" expanded="false" />
-                <element signature="e#18702#18703#0" expanded="false" />
-                <element signature="e#18751#18752#0" expanded="false" />
-                <element signature="e#18912#18913#0" expanded="false" />
-                <element signature="e#18945#18946#0" expanded="false" />
-                <element signature="e#19409#19410#0" expanded="false" />
-                <element signature="e#19439#19440#0" expanded="false" />
-                <element signature="e#19811#19812#0" expanded="false" />
-                <element signature="e#19858#19859#0" expanded="false" />
-                <element signature="e#20024#20025#0" expanded="false" />
-                <element signature="e#20067#20068#0" expanded="false" />
-                <element signature="e#20352#20353#0" expanded="false" />
-                <element signature="e#20397#20398#0" expanded="false" />
-                <element signature="e#33905#33906#0" expanded="false" />
-                <element signature="e#33947#33948#0" expanded="false" />
-                <element signature="e#36848#36849#0" expanded="false" />
-                <element signature="e#36905#36906#0" expanded="false" />
-                <element signature="e#37601#37602#0" expanded="false" />
-                <element signature="e#37651#37652#0" expanded="false" />
-                <element signature="e#38084#38085#0" expanded="false" />
-                <element signature="e#38140#38141#0" expanded="false" />
-                <element signature="e#38569#38570#0" expanded="false" />
-                <element signature="e#38616#38617#0" expanded="false" />
-                <element signature="e#39340#39341#0" expanded="false" />
-                <element signature="e#39397#39398#0" expanded="false" />
-                <element signature="e#39581#39582#0" expanded="false" />
-                <element signature="e#39637#39638#0" expanded="false" />
-                <element signature="e#40584#40585#0" expanded="false" />
-                <element signature="e#40641#40642#0" expanded="false" />
-                <element signature="e#41634#41635#0" expanded="false" />
-                <element signature="e#41671#41672#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GoodsKey.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GoodsKey.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/product-service/src/main/java/cn/jerio/product/redis/GoodsKey.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
@@ -186,10 +122,42 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ProductWebConfig.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/product-web/src/main/java/cn/jerio/config/ProductWebConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/product-web/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/product-web/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ProtostuffSerializer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util/src/main/java/cn/jerio/serializer/ProtostuffSerializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-114">
+            <state relative-caret-position="114">
               <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
               <folding />
             </state>
@@ -199,7 +167,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="836">
               <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
               <folding />
             </state>
@@ -211,10 +179,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#151#152#0" expanded="false" />
-                <element signature="e#180#181#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -224,10 +189,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#239#240#0" expanded="false" />
-                <element signature="e#283#284#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -237,12 +199,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
               <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-              <folding>
-                <element signature="e#226#227#0" expanded="false" />
-                <element signature="e#266#267#0" expanded="false" />
-                <element signature="e#451#452#0" expanded="false" />
-                <element signature="e#487#488#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -282,10 +239,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#150#151#0" expanded="false" />
-                <element signature="e#179#180#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -295,10 +249,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#176#177#0" expanded="false" />
-                <element signature="e#220#221#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -338,11 +289,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
               <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#245#246#0" expanded="false" />
-                <element signature="e#312#313#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -370,7 +317,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/product-service/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
+            <state relative-caret-position="513">
               <caret line="27" column="54" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="54" />
               <folding />
             </state>
@@ -429,7 +376,6 @@
         <option value="$PROJECT_DIR$/common/src/main/java/cn/jerio/vo/LoginVo.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/cn/jerio/vo/GoodsVo.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/cn/jerio/vo/GoodsDetailVo.java" />
-        <option value="$PROJECT_DIR$/product-web/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/product-api/pom.xml" />
         <option value="$PROJECT_DIR$/product-api/src/main/java/cn/jerio/product/GoodsService.java" />
@@ -453,6 +399,8 @@
         <option value="$PROJECT_DIR$/product-service/src/main/java/cn/jerio/product/redis/RedisService.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/cn/jerio/serializer/ProtostuffSerializer.java" />
         <option value="$PROJECT_DIR$/common/pom.xml" />
+        <option value="$PROJECT_DIR$/product-web/pom.xml" />
+        <option value="$PROJECT_DIR$/product-web/src/main/java/cn/jerio/config/ProductWebConfig.java" />
       </list>
     </option>
   </component>
@@ -508,6 +456,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -526,11 +477,130 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="product-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="product-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="product-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="product-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jerio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seckill" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="product-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jerio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -997,12 +1067,21 @@
       <option name="presentableId" value="Default" />
       <updated>1545882321856</updated>
       <workItem from="1545882325820" duration="9951000" />
-      <workItem from="1545959262684" duration="8961000" />
+      <workItem from="1545959262684" duration="9302000" />
+      <workItem from="1545985973173" duration="161000" />
     </task>
+    <task id="LOCAL-00001" summary="redis相关修改">
+      <created>1545985590601</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1545985590601</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18912000" />
+    <option name="totallyTimeSpent" value="19414000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="0" />
@@ -1017,7 +1096,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32884097" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30205655" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1025,8 +1104,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1041,6 +1120,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="redis相关修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="redis相关修改" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
@@ -1052,21 +1135,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/cn/jerio/pojo/MiaoshaGoods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/cn/jerio/pojo/MiaoshaOrder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,9 +1146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1084,9 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1094,7 +1160,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1130,7 +1195,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1138,20 +1202,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product-web/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product-web/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1200,11 +1250,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#245#246#0" expanded="false" />
-            <element signature="e#312#313#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1215,10 +1261,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#151#152#0" expanded="false" />
-            <element signature="e#180#181#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1226,10 +1269,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#239#240#0" expanded="false" />
-            <element signature="e#283#284#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1245,10 +1285,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#150#151#0" expanded="false" />
-            <element signature="e#179#180#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1256,10 +1293,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#176#177#0" expanded="false" />
-            <element signature="e#220#221#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1267,12 +1301,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="e#226#227#0" expanded="false" />
-            <element signature="e#266#267#0" expanded="false" />
-            <element signature="e#451#452#0" expanded="false" />
-            <element signature="e#487#488#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1285,7 +1314,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/product-api/src/main/java/cn/jerio/product/service/GoodsService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
+        <state relative-caret-position="95">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
           <folding />
         </state>
@@ -1317,68 +1346,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22819">
           <caret line="1307" column="38" selection-start-line="1307" selection-start-column="38" selection-end-line="1307" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#41675#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6815#6816#0" expanded="false" />
-            <element signature="e#6866#6867#0" expanded="false" />
-            <element signature="e#10163#10164#0" expanded="false" />
-            <element signature="e#10219#10220#0" expanded="false" />
-            <element signature="e#11869#11870#0" expanded="false" />
-            <element signature="e#11924#11925#0" expanded="false" />
-            <element signature="e#14553#14554#0" expanded="false" />
-            <element signature="e#14588#14589#0" expanded="false" />
-            <element signature="e#15604#15605#0" expanded="false" />
-            <element signature="e#15634#15635#0" expanded="false" />
-            <element signature="e#15924#15925#0" expanded="false" />
-            <element signature="e#15971#15972#0" expanded="false" />
-            <element signature="e#16217#16218#0" expanded="false" />
-            <element signature="e#16254#16255#0" expanded="false" />
-            <element signature="e#16790#16791#0" expanded="false" />
-            <element signature="e#16821#16822#0" expanded="false" />
-            <element signature="e#17198#17199#0" expanded="false" />
-            <element signature="e#17240#17241#0" expanded="false" />
-            <element signature="e#17490#17491#0" expanded="false" />
-            <element signature="e#17528#17529#0" expanded="false" />
-            <element signature="e#17710#17711#0" expanded="false" />
-            <element signature="e#17737#17738#0" expanded="false" />
-            <element signature="e#17993#17994#0" expanded="false" />
-            <element signature="e#18033#18034#0" expanded="false" />
-            <element signature="e#18221#18222#0" expanded="false" />
-            <element signature="e#18250#18251#0" expanded="false" />
-            <element signature="e#18405#18406#0" expanded="false" />
-            <element signature="e#18436#18437#0" expanded="false" />
-            <element signature="e#18702#18703#0" expanded="false" />
-            <element signature="e#18751#18752#0" expanded="false" />
-            <element signature="e#18912#18913#0" expanded="false" />
-            <element signature="e#18945#18946#0" expanded="false" />
-            <element signature="e#19409#19410#0" expanded="false" />
-            <element signature="e#19439#19440#0" expanded="false" />
-            <element signature="e#19811#19812#0" expanded="false" />
-            <element signature="e#19858#19859#0" expanded="false" />
-            <element signature="e#20024#20025#0" expanded="false" />
-            <element signature="e#20067#20068#0" expanded="false" />
-            <element signature="e#20352#20353#0" expanded="false" />
-            <element signature="e#20397#20398#0" expanded="false" />
-            <element signature="e#33905#33906#0" expanded="false" />
-            <element signature="e#33947#33948#0" expanded="false" />
-            <element signature="e#36848#36849#0" expanded="false" />
-            <element signature="e#36905#36906#0" expanded="false" />
-            <element signature="e#37601#37602#0" expanded="false" />
-            <element signature="e#37651#37652#0" expanded="false" />
-            <element signature="e#38084#38085#0" expanded="false" />
-            <element signature="e#38140#38141#0" expanded="false" />
-            <element signature="e#38569#38570#0" expanded="false" />
-            <element signature="e#38616#38617#0" expanded="false" />
-            <element signature="e#39340#39341#0" expanded="false" />
-            <element signature="e#39397#39398#0" expanded="false" />
-            <element signature="e#39581#39582#0" expanded="false" />
-            <element signature="e#39637#39638#0" expanded="false" />
-            <element signature="e#40584#40585#0" expanded="false" />
-            <element signature="e#40641#40642#0" expanded="false" />
-            <element signature="e#41634#41635#0" expanded="false" />
-            <element signature="e#41671#41672#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1436,7 +1404,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/product-service/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
+        <state relative-caret-position="513">
           <caret line="27" column="54" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="54" />
           <folding />
         </state>
@@ -1460,7 +1428,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
+        <state relative-caret-position="836">
           <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
           <folding />
         </state>
@@ -1468,7 +1436,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/util/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
+        <state relative-caret-position="1045">
           <caret line="55" column="21" selection-start-line="46" selection-start-column="8" selection-end-line="55" selection-end-column="21" />
           <folding />
         </state>
@@ -1476,25 +1444,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/util/src/main/java/cn/jerio/serializer/ProtostuffSerializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
+        <state relative-caret-position="114">
           <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product-service/src/main/java/cn/jerio/product/redis/RedisService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/product-service/src/main/java/cn/jerio/product/redis/RedisService.java" />
     <entry file="file://$PROJECT_DIR$/product-service/src/main/java/cn/jerio/product/redis/GoodsKey.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-web/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-web/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-web/src/main/java/cn/jerio/config/ProductWebConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
