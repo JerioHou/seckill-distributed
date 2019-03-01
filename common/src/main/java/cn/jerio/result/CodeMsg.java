@@ -1,7 +1,7 @@
 package cn.jerio.result;
 
 /**
- * Created by Jerio on 2018/2/26.
+ * Created by Jerio on 2018/2/26
  */
 public class CodeMsg {
     private int code;

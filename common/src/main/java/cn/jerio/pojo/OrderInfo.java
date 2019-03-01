@@ -2,10 +2,11 @@ package cn.jerio.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class OrderInfo {
+public class OrderInfo implements Serializable {
     private Long id;
     private Long userId;
     private Long goodsId;

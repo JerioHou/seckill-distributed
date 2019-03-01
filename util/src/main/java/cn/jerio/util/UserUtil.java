@@ -1,9 +1,9 @@
 package cn.jerio.util;
 
 
+import cn.jerio.pojo.MiaoshaUser;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.jerio.miaosha.domain.MiaoshaUser;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Jerio on 2018/3/22.
+ * Created by Jerio on 2018/3/22
  */
 public class UserUtil {
 

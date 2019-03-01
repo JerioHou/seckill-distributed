@@ -27,6 +27,8 @@ Servers/
 *.iml
 *.iws
 
+logs/
+
 #temp file
 
 *.log

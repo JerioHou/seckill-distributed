@@ -25,13 +25,14 @@
         <module name="common" />
         <module name="order-api" />
         <module name="order-service" />
-        <module name="order-web" />
         <module name="pay-api" />
         <module name="pay-service" />
+        <module name="portal-web" />
         <module name="product-api" />
         <module name="product-service" />
         <module name="product-web" />
-        <module name="seckill" />
+        <module name="user-api" />
+        <module name="user-service" />
         <module name="util" />
       </profile>
     </annotationProcessing>
@@ -43,10 +44,13 @@
       <module name="order-web" target="1.8" />
       <module name="pay-api" target="1.8" />
       <module name="pay-service" target="1.8" />
+      <module name="portal-web" target="1.8" />
       <module name="product-api" target="1.8" />
       <module name="product-service" target="1.8" />
       <module name="product-web" target="1.8" />
       <module name="seckill" target="1.8" />
+      <module name="user-api" target="1.8" />
+      <module name="user-service" target="1.8" />
       <module name="util" target="1.8" />
     </bytecodeTargetLevel>
   </component>

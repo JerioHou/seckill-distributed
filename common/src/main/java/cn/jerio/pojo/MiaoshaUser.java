@@ -2,10 +2,11 @@ package cn.jerio.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class MiaoshaUser {
+public class MiaoshaUser implements Serializable{
 	private Long id;
 	private String nickname;
 	private String password;

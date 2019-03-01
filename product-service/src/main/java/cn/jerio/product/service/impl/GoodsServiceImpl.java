@@ -1,15 +1,16 @@
 package cn.jerio.product.service.impl;
 
 
+import cn.jerio.constant.RedisKey;
 import cn.jerio.pojo.MiaoshaGoods;
 import cn.jerio.product.dao.GoodsDao;
-import cn.jerio.product.redis.GoodsKey;
 import cn.jerio.product.service.GoodsService;
 import cn.jerio.vo.GoodsVo;
+import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,8 +22,8 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     GoodsDao goodsDao;
 
-    @Autowired
-    RedisTemplate redisTemplate;
+    @Resource
+    RedisTemplate<String,GoodsVo> redisTemplate;
 
 
     @Override
@@ -32,9 +33,8 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public GoodsVo getGoodsVoByGoodsId(long goodsId) {
 
-
-        String realKey  = GoodsKey.GoodsVo.getPrefix() + goodsId;
-        GoodsVo goodsVo = (GoodsVo) redisTemplate.opsForValue().get(realKey);
+        String realKey  = RedisKey.GOODS_KEY_PRFIX + goodsId;
+        GoodsVo goodsVo = redisTemplate.opsForValue().get(realKey);
         if (goodsVo == null){
             goodsVo = goodsDao.getGoodsVoByGoodsId(goodsId);
             redisTemplate.boundValueOps(realKey).set(goodsVo);

@@ -8,11 +8,11 @@ import java.util.List;
 public interface GoodsService {
 
 
-    public List<GoodsVo> listGoodsVo();
+    List<GoodsVo> listGoodsVo();
 
-    public GoodsVo getGoodsVoByGoodsId(long goodsId) ;
+    GoodsVo getGoodsVoByGoodsId(long goodsId) ;
 
-    public boolean reduceStock(GoodsVo goods) ;
+    boolean reduceStock(GoodsVo goods) ;
 
 }
 
