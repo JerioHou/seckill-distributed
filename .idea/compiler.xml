@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="common" />
+        <module name="id-generator" />
         <module name="idGenerator" />
         <module name="idGenerator-api" />
         <module name="order-api" />
@@ -40,6 +41,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
+      <module name="id-generator" target="1.8" />
       <module name="idGenerator" target="1.8" />
       <module name="idGenerator-api" target="1.8" />
       <module name="orde-rweb" target="1.8" />

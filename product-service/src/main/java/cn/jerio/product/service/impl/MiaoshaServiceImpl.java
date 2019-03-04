@@ -1,9 +1,9 @@
-package cn.jerio.order.service.impl;
+package cn.jerio.product.service.impl;
 
 import cn.jerio.constant.RedisKey;
-import cn.jerio.oder.service.MiaoshaService;
+import cn.jerio.product.mq.RabbitmqSender;
+import cn.jerio.product.service.MiaoshaService;
 import cn.jerio.oder.service.OrderService;
-import cn.jerio.order.mq.RabbitmqSender;
 import cn.jerio.pojo.MiaoshaMessage;
 import cn.jerio.pojo.MiaoshaOrder;
 import cn.jerio.pojo.MiaoshaUser;
