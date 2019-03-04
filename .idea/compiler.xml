@@ -23,6 +23,8 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="common" />
+        <module name="idGenerator" />
+        <module name="idGenerator-api" />
         <module name="order-api" />
         <module name="order-service" />
         <module name="pay-api" />
@@ -38,6 +40,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
+      <module name="idGenerator" target="1.8" />
+      <module name="idGenerator-api" target="1.8" />
       <module name="orde-rweb" target="1.8" />
       <module name="order-api" target="1.8" />
       <module name="order-service" target="1.8" />

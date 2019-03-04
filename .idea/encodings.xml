@@ -3,9 +3,10 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/idGenerator" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/idGenerator-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/order-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pay-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pay-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/portal-web" charset="UTF-8" />

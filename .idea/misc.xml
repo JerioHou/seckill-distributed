@@ -19,6 +19,8 @@
         <option value="$PROJECT_DIR$/user-api/pom.xml" />
         <option value="$PROJECT_DIR$/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/portal-web/pom.xml" />
+        <option value="$PROJECT_DIR$/idGenerator/pom.xml" />
+        <option value="$PROJECT_DIR$/idGenerator-api/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

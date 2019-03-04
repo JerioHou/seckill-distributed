@@ -31,19 +31,7 @@ public class GoodsController {
     @RequestMapping(value="/to_list")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response,
                               MiaoshaUser user) {
-//        model.addAttribute("user", user);
-//        String html = redisTemplate.opsForValue().get(RedisKey.GOODS_LIST);
-//        if (!StringUtils.isEmpty(html)){
-//            return html;
-//        }
         List<GoodsVo> goodsList = goodsService.listGoodsVo();
-//        model.addAttribute("goodsList", goodsList);
-//        SpringWebContext context =  new SpringWebContext(request,response,request.getServletContext(),
-//                request.getLocale(),model.asMap(),applicationContext);
-//        html = thymeleafViewResolver.getTemplateEngine().process("goods_list", IContext);
-//        redisTemplate.opsForValue().set(RedisKey.GOODS_LIST,html);
-        //查询商品列表
-//        return html;
         ModelAndView view = new ModelAndView("goods_list");
         view.addObject("user",user);
         view.addObject("goodsList",goodsList);
@@ -63,7 +51,7 @@ public class GoodsController {
         if(now < startAt ) {//秒杀还没开始，倒计时
             miaoshaStatus = 0;
             remainSeconds = (int)((startAt - now )/1000);
-        }else  if(now > endAt){//秒杀已经结束
+        }else if(now > endAt){//秒杀已经结束
             miaoshaStatus = 2;
             remainSeconds = -1;
         }else {//秒杀进行中

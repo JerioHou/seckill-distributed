@@ -9,6 +9,7 @@ import cn.jerio.user.service.MiaoShaUserService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -20,6 +21,7 @@ import java.io.OutputStream;
 /**
  * Created by Jerio on 2019/03/01
  */
+@Component
 public class AccessInterceptor extends HandlerInterceptorAdapter {
     @Reference
     private MiaoShaUserService userService;

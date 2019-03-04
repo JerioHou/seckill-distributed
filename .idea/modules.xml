@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/idGenerator/idGenerator.iml" filepath="$PROJECT_DIR$/idGenerator/idGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/idGenerator-api/idGenerator-api.iml" filepath="$PROJECT_DIR$/idGenerator-api/idGenerator-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/order-api/order-api.iml" filepath="$PROJECT_DIR$/order-api/order-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/order-service/order-service.iml" filepath="$PROJECT_DIR$/order-service/order-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pay-api/pay-api.iml" filepath="$PROJECT_DIR$/pay-api/pay-api.iml" />

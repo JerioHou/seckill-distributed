@@ -1,13 +1,11 @@
-package cn.jerio.util;
-
-import java.util.HashSet;
-import java.util.Set;
+package cn.jerio.idGenerator;
 
 /**
- * 雪花算法，生成全局唯一ID
- * Created by Jerio on 2018/9/5
+ * Created by Jerio on 2019/03/04
  */
+
 public class IdGenerator {
+
     /**
      * 起始的时间戳
      */
@@ -93,16 +91,4 @@ public class IdGenerator {
         return System.currentTimeMillis();
     }
 
-    public static void main(String[] args) {
-        Set idSet = new HashSet();
-        IdGenerator idGenerator = new IdGenerator(2, 3);
-
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
-            idSet.add(idGenerator.nextId());
-        }
-        System.out.println(idSet.size());
-        System.out.println(System.currentTimeMillis() - start);
-
-    }
 }
