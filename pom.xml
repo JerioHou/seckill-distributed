@@ -19,6 +19,12 @@
     <name>seckill</name>
     <description>分布式秒杀系统</description>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
     <modules>
         <module>common</module>
         <module>product-api</module>

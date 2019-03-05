@@ -11,8 +11,10 @@ import cn.jerio.product.service.MiaoshaService;
 import cn.jerio.result.CodeMsg;
 import cn.jerio.result.Result;
 import cn.jerio.user.service.MiaoShaUserService;
+import cn.jerio.util.ImageUtil;
 import cn.jerio.vo.GoodsVo;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -22,18 +24,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import static cn.jerio.util.ImageUtil.calc;
 
 /**
  * Created by Jerio on 2019/03/04
@@ -78,6 +78,7 @@ public class MiaoshaController implements InitializingBean {
         }
     }
 
+    @HystrixCommand(fallbackMethod = "miaoshaFallback")
     @AccessLimit
     @RequestMapping(value="/{path}/do_miaosha", method= RequestMethod.POST)
     @ResponseBody
@@ -132,17 +133,32 @@ public class MiaoshaController implements InitializingBean {
         return Result.success(0);//排队中
     }
 
+    /**
+     * 秒杀降级方法
+     */
+    private Result<Integer> miaoshaFallback(Model model,MiaoshaUser user,
+                                    @PathVariable("path")String path,
+                                    @RequestParam("goodsId")long goodsId){
+        return Result.error(CodeMsg.FALL_BACK);
+    }
+
     @AccessLimit
     @RequestMapping(value="/verifyCode", method=RequestMethod.GET)
     @ResponseBody
     public Result<String> getMiaoshaVerifyCod(HttpServletResponse response, MiaoshaUser user,
                                               @RequestParam("goodsId")long goodsId) {
+        if (user == null || goodsId <= 0) {
+            return null;
+        }
         try {
-            BufferedImage image  = createVerifyCode(user, goodsId);
+            String verifyCode = ImageUtil.generateVerifyCode();
+            BufferedImage image = ImageUtil.createVerifyCode(verifyCode);
             OutputStream out = response.getOutputStream();
             ImageIO.write(image, "JPEG", out);
             out.flush();
             out.close();
+            int result = calc(verifyCode);
+            redisTemplate.opsForValue().set(RedisKey.MiaoshaVerifyCode+user.getId() + ":" + goodsId, result,300, TimeUnit.SECONDS);
             return null;
         }catch(Exception e) {
             e.printStackTrace();
@@ -150,12 +166,14 @@ public class MiaoshaController implements InitializingBean {
         }
     }
 
+    @HystrixCommand(fallbackMethod = "getMiaoshaPathFallback")
     @AccessLimit(rateLimiter = true,rateLimiterName = "getMiaoshaPath",rateLimiterValue = 200.0)
     @RequestMapping(value="/path", method=RequestMethod.GET)
     @ResponseBody
     public Result<String> getMiaoshaPath(HttpServletRequest request, MiaoshaUser user,
                                          @RequestParam("goodsId")long goodsId,
                                          @RequestParam(value="verifyCode", defaultValue="0")int verifyCode) {
+
         if(user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
@@ -174,8 +192,18 @@ public class MiaoshaController implements InitializingBean {
         if(!check) {
             return Result.error(CodeMsg.REQUEST_ILLEGAL);
         }
-        String path  =miaoshaService.createMiaoshaPath(user, goodsId);
+        String path = miaoshaService.createMiaoshaPath(user, goodsId);
         return Result.success(path);
+    }
+
+    /**
+     * getMiaoshaPath的降级方法
+     *
+     */
+    private Result<String> getMiaoshaPathFallback(HttpServletRequest request, MiaoshaUser user,
+                                                  @RequestParam("goodsId")long goodsId,
+                                                  @RequestParam(value="verifyCode", defaultValue="0")int verifyCode){
+        return Result.error(CodeMsg.FALL_BACK);
     }
 
     /**
@@ -193,68 +221,6 @@ public class MiaoshaController implements InitializingBean {
         long result  = orderService.getMiaoshaResult(user.getId(), goodsId);
         //long类型在前端会出现精度丢失问题，故采用string类型传输
         return Result.success(String.valueOf(result));
-    }
-
-
-
-    public BufferedImage createVerifyCode(MiaoshaUser user, long goodsId) {
-
-        if (user == null || goodsId <= 0) {
-            return null;
-        }
-        int width = 80;
-        int height = 32;
-        //create the image
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        Graphics g = image.getGraphics();
-        // set the background color
-        g.setColor(new Color(0xDCDCDC));
-        g.fillRect(0, 0, width, height);
-        // draw the border
-        g.setColor(Color.black);
-        g.drawRect(0, 0, width - 1, height - 1);
-        // create a random instance to generate the codes
-        Random rdm = new Random();
-        // make some confusion
-        for (int i = 0; i < 50; i++) {
-            int x = rdm.nextInt(width);
-            int y = rdm.nextInt(height);
-            g.drawOval(x, y, 0, 0);
-        }
-        // generate a random code
-        String verifyCode = generateVerifyCode(rdm);
-        g.setColor(new Color(0, 100, 0));
-        g.setFont(new Font("Candara", Font.BOLD, 24));
-        g.drawString(verifyCode, 8, 24);
-        g.dispose();
-        //把验证码存到redis中
-        int rnd = calc(verifyCode);
-        redisTemplate.opsForValue().set(RedisKey.MiaoshaVerifyCode+user.getId() + ":" + goodsId, rnd,300, TimeUnit.SECONDS);
-        //输出图片
-        return image;
-    }
-
-    private static char[] ops = new char[]{'+', '-', '*'};
-
-    private String generateVerifyCode(Random rdm) {
-        int num1 = rdm.nextInt(10);
-        int num2 = rdm.nextInt(10);
-        int num3 = rdm.nextInt(10);
-        char op1 = ops[rdm.nextInt(3)];
-        char op2 = ops[rdm.nextInt(3)];
-        String exp = "" + num1 + op1 + num2 + op2 + num3;
-        return exp;
-    }
-
-    private static int calc(String exp) {
-        try {
-            ScriptEngineManager manager = new ScriptEngineManager();
-            ScriptEngine engine = manager.getEngineByName("JavaScript");
-            return (Integer) engine.eval(exp);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
     }
 
     public boolean checkVerifyCode(MiaoshaUser user, long goodsId, int verifyCode) {

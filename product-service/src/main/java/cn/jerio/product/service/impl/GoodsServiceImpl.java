@@ -7,6 +7,8 @@ import cn.jerio.product.dao.GoodsDao;
 import cn.jerio.product.service.GoodsService;
 import cn.jerio.vo.GoodsVo;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -27,10 +29,16 @@ public class GoodsServiceImpl implements GoodsService {
 
 
     @Override
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000") })
     public List<GoodsVo> listGoodsVo(){
         return goodsDao.listGoodsVo();
     }
     @Override
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000") })
     public GoodsVo getGoodsVoByGoodsId(long goodsId) {
 
         String realKey  = RedisKey.GOODS_KEY_PRFIX + goodsId;
@@ -42,6 +50,9 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsVo;
     }
     @Override
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000") })
     public boolean reduceStock(GoodsVo goods) {
         MiaoshaGoods g = new MiaoshaGoods();
         g.setGoodsId(goods.getId());

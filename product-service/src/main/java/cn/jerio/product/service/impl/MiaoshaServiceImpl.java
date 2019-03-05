@@ -9,6 +9,8 @@ import cn.jerio.product.service.MiaoshaService;
 import cn.jerio.util.MD5Util;
 import cn.jerio.util.UUIDUtil;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -32,6 +34,9 @@ public class MiaoshaServiceImpl implements MiaoshaService {
 
 
     @Override
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000") })
     public boolean checkPath(MiaoshaUser user, long goodsId, String path) {
         if (user == null || path == null) {
             return false;
@@ -41,6 +46,9 @@ public class MiaoshaServiceImpl implements MiaoshaService {
     }
 
     @Override
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000") })
     public String createMiaoshaPath(MiaoshaUser user, long goodsId) {
         if (user == null || goodsId <= 0) {
             return null;
@@ -51,6 +59,9 @@ public class MiaoshaServiceImpl implements MiaoshaService {
     }
 
     @Override
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000") })
     public void sendMsg(MiaoshaUser user, long goodsId) {
         //入队
         MiaoshaMessage mm = new MiaoshaMessage();
