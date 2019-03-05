@@ -104,10 +104,10 @@ public class MiaoshaController implements InitializingBean {
         因此会出现秒杀结束但有线程能继续执行下面的代码，特别是线程数量特别多的情况下，
         所以此处只是部分减少redis请求，但仍能启动一定作用，特别是没有 “预减库存”时，能较大程度较少消息的数量
         */
-//        boolean over = localOverMap.get(goodsId);
-//        if(over) {
-//            return Result.error(CodeMsg.MIAO_SHA_OVER);
-//        }
+        boolean over = localOverMap.get(goodsId);
+        if(over) {
+            return Result.error(CodeMsg.MIAO_SHA_OVER);
+        }
         //判断是否已经秒杀到了
         MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdGoodsId(user.getId(), goodsId);
         if(order != null) {
@@ -176,6 +176,10 @@ public class MiaoshaController implements InitializingBean {
 
         if(user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        //判断是否已经结束
+        if (localOverMap.get(goodsId)){
+            return Result.error(CodeMsg.MIAO_SHA_OVER);
         }
 
         //验证秒杀是否开始
