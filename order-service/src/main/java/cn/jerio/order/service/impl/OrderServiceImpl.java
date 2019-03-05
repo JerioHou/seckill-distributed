@@ -7,6 +7,7 @@ import cn.jerio.order.dao.OrderDao;
 import cn.jerio.pojo.MiaoshaOrder;
 import cn.jerio.pojo.MiaoshaUser;
 import cn.jerio.pojo.OrderInfo;
+import cn.jerio.product.service.GoodsService;
 import cn.jerio.vo.GoodsVo;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -29,13 +30,31 @@ public class OrderServiceImpl implements OrderService{
     @Reference
     private IdService idService;
 
-    @Resource
-    private RedisTemplate<String,MiaoshaOrder> redisTemplate;
+    @Resource(name = "myRedisTemplate")
+    private RedisTemplate redisTemplate;
+
+    @Reference
+    private GoodsService goodsService;
+
+
+    @Override
+    @Transactional
+    public OrderInfo miaosha(MiaoshaUser user, GoodsVo goods) {
+        //减库存 下订单 写入秒杀订单
+        boolean success = goodsService.reduceStock(goods);
+        if(success) {
+            //order_info maiosha_order
+            return createOrder(user, goods);
+        }else {
+            setGoodsOver(goods.getId());
+            return null;
+        }
+    }
 
 
     @Override
     public MiaoshaOrder getMiaoshaOrderByUserIdGoodsId(long userId, long goodsId) {
-        return redisTemplate.opsForValue().get(RedisKey.USER_GOOD+userId+":"+goodsId);
+        return (MiaoshaOrder) redisTemplate.opsForValue().get(RedisKey.USER_GOOD+userId+":"+goodsId);
     }
 
     @Override
@@ -67,5 +86,28 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public OrderInfo getOrderById(long orderId) {
         return orderDao.getOrderById(orderId);
+    }
+
+    @Override
+    public long getMiaoshaResult(Long userId, long goodsId) {
+        MiaoshaOrder order = getMiaoshaOrderByUserIdGoodsId(userId, goodsId);
+        if (order != null) {//秒杀成功
+            return order.getOrderId();
+        } else {
+            boolean isOver = getGoodsOver(goodsId);
+            if (isOver) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    private void setGoodsOver(Long goodsId) {
+        redisTemplate.opsForValue().set(RedisKey.isGoodsOver +goodsId, true);
+    }
+
+    private boolean getGoodsOver(long goodsId) {
+        return redisTemplate.persist(RedisKey.isGoodsOver +goodsId);
     }
 }

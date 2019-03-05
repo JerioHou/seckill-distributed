@@ -2,12 +2,12 @@ package cn.jerio.portal.controller;
 
 import cn.jerio.annotation.AccessLimit;
 import cn.jerio.constant.RedisKey;
-import cn.jerio.product.service.MiaoshaService;
 import cn.jerio.oder.service.OrderService;
 import cn.jerio.pojo.MiaoshaOrder;
 import cn.jerio.pojo.MiaoshaUser;
 import cn.jerio.portal.init.InitRateLimiter;
 import cn.jerio.product.service.GoodsService;
+import cn.jerio.product.service.MiaoshaService;
 import cn.jerio.result.CodeMsg;
 import cn.jerio.result.Result;
 import cn.jerio.user.service.MiaoShaUserService;
@@ -15,19 +15,25 @@ import cn.jerio.vo.GoodsVo;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Jerio on 2019/03/04
@@ -49,8 +55,11 @@ public class MiaoshaController implements InitializingBean {
     @Reference
     MiaoshaService miaoshaService;
 
-    @Resource
+    @Resource(name = "myRedisTemplate")
     private RedisTemplate redisTemplate;
+
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     private HashMap<Long, Boolean> localOverMap =  new HashMap<Long, Boolean>();
 
@@ -64,7 +73,7 @@ public class MiaoshaController implements InitializingBean {
             return;
         }
         for(GoodsVo goods : goodsList) {
-            redisTemplate.opsForValue().set(RedisKey.MiaoshaGoodsStock+goods.getId(), goods.getStockCount());
+            stringRedisTemplate.opsForValue().set(RedisKey.MiaoshaGoodsStock+goods.getId(), goods.getStockCount().toString());
             localOverMap.put(goods.getId(), false);
         }
     }
@@ -112,7 +121,8 @@ public class MiaoshaController implements InitializingBean {
 
         如果对库存要求能严格，不能少也不能多，则不能采用这种方式。
         */
-        long stock = redisTemplate.opsForValue().increment(RedisKey.MiaoshaGoodsStock+goodsId,-1);//10
+        long stock =  stringRedisTemplate.boundValueOps(RedisKey.MiaoshaGoodsStock+goodsId).increment(-1);
+
         if(stock < 0) {
             localOverMap.put(goodsId,true);
             return Result.error(CodeMsg.MIAO_SHA_OVER);
@@ -128,7 +138,7 @@ public class MiaoshaController implements InitializingBean {
     public Result<String> getMiaoshaVerifyCod(HttpServletResponse response, MiaoshaUser user,
                                               @RequestParam("goodsId")long goodsId) {
         try {
-            BufferedImage image  = miaoshaService.createVerifyCode(user, goodsId);
+            BufferedImage image  = createVerifyCode(user, goodsId);
             OutputStream out = response.getOutputStream();
             ImageIO.write(image, "JPEG", out);
             out.flush();
@@ -160,7 +170,7 @@ public class MiaoshaController implements InitializingBean {
             return Result.error(CodeMsg.REQUEST_ILLEGAL);
         }
 
-        boolean check = miaoshaService.checkVerifyCode(user, goodsId, verifyCode);
+        boolean check = checkVerifyCode(user, goodsId, verifyCode);
         if(!check) {
             return Result.error(CodeMsg.REQUEST_ILLEGAL);
         }
@@ -180,8 +190,82 @@ public class MiaoshaController implements InitializingBean {
                                         @RequestParam("goodsId")long goodsId) {
         model.addAttribute("user", user);
 
-        long result  = miaoshaService.getMiaoshaResult(user.getId(), goodsId);
+        long result  = orderService.getMiaoshaResult(user.getId(), goodsId);
         //long类型在前端会出现精度丢失问题，故采用string类型传输
         return Result.success(String.valueOf(result));
+    }
+
+
+
+    public BufferedImage createVerifyCode(MiaoshaUser user, long goodsId) {
+
+        if (user == null || goodsId <= 0) {
+            return null;
+        }
+        int width = 80;
+        int height = 32;
+        //create the image
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        Graphics g = image.getGraphics();
+        // set the background color
+        g.setColor(new Color(0xDCDCDC));
+        g.fillRect(0, 0, width, height);
+        // draw the border
+        g.setColor(Color.black);
+        g.drawRect(0, 0, width - 1, height - 1);
+        // create a random instance to generate the codes
+        Random rdm = new Random();
+        // make some confusion
+        for (int i = 0; i < 50; i++) {
+            int x = rdm.nextInt(width);
+            int y = rdm.nextInt(height);
+            g.drawOval(x, y, 0, 0);
+        }
+        // generate a random code
+        String verifyCode = generateVerifyCode(rdm);
+        g.setColor(new Color(0, 100, 0));
+        g.setFont(new Font("Candara", Font.BOLD, 24));
+        g.drawString(verifyCode, 8, 24);
+        g.dispose();
+        //把验证码存到redis中
+        int rnd = calc(verifyCode);
+        redisTemplate.opsForValue().set(RedisKey.MiaoshaVerifyCode+user.getId() + ":" + goodsId, rnd,300, TimeUnit.SECONDS);
+        //输出图片
+        return image;
+    }
+
+    private static char[] ops = new char[]{'+', '-', '*'};
+
+    private String generateVerifyCode(Random rdm) {
+        int num1 = rdm.nextInt(10);
+        int num2 = rdm.nextInt(10);
+        int num3 = rdm.nextInt(10);
+        char op1 = ops[rdm.nextInt(3)];
+        char op2 = ops[rdm.nextInt(3)];
+        String exp = "" + num1 + op1 + num2 + op2 + num3;
+        return exp;
+    }
+
+    private static int calc(String exp) {
+        try {
+            ScriptEngineManager manager = new ScriptEngineManager();
+            ScriptEngine engine = manager.getEngineByName("JavaScript");
+            return (Integer) engine.eval(exp);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public boolean checkVerifyCode(MiaoshaUser user, long goodsId, int verifyCode) {
+        if (user == null || goodsId <= 0) {
+            return false;
+        }
+        Integer codeOld = (Integer) redisTemplate.opsForValue().get(RedisKey.MiaoshaVerifyCode+user.getId() + ":" + goodsId);
+        if (codeOld == null || codeOld - verifyCode != 0) {
+            return false;
+        }
+        redisTemplate.delete(RedisKey.MiaoshaVerifyCode+user.getId() + ":" + goodsId);
+        return true;
     }
 }

@@ -26,15 +26,15 @@ public class MiaoshaUserServiceImpl implements MiaoShaUserService {
 
     @Autowired
     private MiaoshaUserDao miaoshaUserDao;
-    @Resource
-    private RedisTemplate<String,MiaoshaUser> redisTemplate;
+    @Resource(name = "myRedisTemplate")
+    private RedisTemplate redisTemplate;
 
     @Value("${redis.tokenExpire}")
     int tokenExpire;
 
     @Override
     public MiaoshaUser getById(long id) {
-        MiaoshaUser user = redisTemplate.boundValueOps(RedisKey.USER_KEY_PRFIX+id).get();
+        MiaoshaUser user = (MiaoshaUser) redisTemplate.boundValueOps(RedisKey.USER_KEY_PRFIX+id).get();
         if (user == null){
             user = miaoshaUserDao.getById(id);
             redisTemplate.opsForValue().set(RedisKey.USER_KEY_PRFIX+id,user);
@@ -84,6 +84,7 @@ public class MiaoshaUserServiceImpl implements MiaoShaUserService {
 
     @Override
     public MiaoshaUser getByToken(String token) {
-        return redisTemplate.opsForValue().get(RedisKey.USER_TOKEN + token);
+
+           return (MiaoshaUser) redisTemplate.opsForValue().get(RedisKey.USER_TOKEN + token);
     }
 }

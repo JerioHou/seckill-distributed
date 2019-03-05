@@ -22,7 +22,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     GoodsDao goodsDao;
 
-    @Resource
+    @Resource(name = "myRedisTemplate")
     RedisTemplate<String,GoodsVo> redisTemplate;
 
 

@@ -1,10 +1,21 @@
 package cn.jerio.serializer;
 
 
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.SerializationException;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
 /**
  * Created by Jerio on 2018/12/28
-
-public class KryoSerializer <T> implements RedisSerializer<T>  {
+*/
+public class KryoSerializer <T> implements RedisSerializer<T> {
     private final static Logger logger = LoggerFactory.getLogger(KryoSerializer.class);
     private static final ThreadLocal<Kryo> kryos = new ThreadLocal<Kryo>() {
         protected Kryo initialValue() {
@@ -61,4 +72,3 @@ public class KryoSerializer <T> implements RedisSerializer<T>  {
     }
 
 }
- */

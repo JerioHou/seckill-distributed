@@ -6,13 +6,12 @@ import cn.jerio.pojo.MiaoshaMessage;
 import cn.jerio.pojo.MiaoshaOrder;
 import cn.jerio.pojo.MiaoshaUser;
 import cn.jerio.product.service.GoodsService;
-import cn.jerio.product.service.MiaoshaService;
 import cn.jerio.vo.GoodsVo;
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.fastjson.JSON;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -24,29 +23,27 @@ import javax.annotation.Resource;
 public class RabbitmqReceiver {
 
     @Reference
-    private MiaoshaService miaoshaService;
-
-    @Reference
     private GoodsService goodsService;
 
     @Autowired
     private OrderService orderService;
 
-    @Resource
+    @Resource(name = "myRedisTemplate")
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     private static final String MIAOSHA_QUEUE = "miaosha.queue";
 
     @RabbitListener(queues = MIAOSHA_QUEUE,concurrency = "5")
-    public void recive(String message) {
+    public void recive(MiaoshaMessage message) {
 
-        MiaoshaMessage mm = JSON.parseObject(message, MiaoshaMessage.class);
-
-        MiaoshaUser user = mm.getUser();
-        long goodsId = mm.getGoodsId();
+        MiaoshaUser user = message.getUser();
+        long goodsId = message.getGoodsId();
 
         //再次判断库存
-        int stock = (int) redisTemplate.opsForValue().get(RedisKey.MiaoshaGoodsStock+ goodsId);
+        int stock =  Integer.parseInt(stringRedisTemplate.opsForValue().get(RedisKey.MiaoshaGoodsStock+ goodsId));
         if (stock <= 0) {
             return;
         }
@@ -57,6 +54,6 @@ public class RabbitmqReceiver {
         }
         GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
         //减库存 下订单 写入秒杀订单
-        miaoshaService.miaosha(user, goods);
+        orderService.miaosha(user, goods);
     }
 }
