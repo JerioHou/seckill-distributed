@@ -2,7 +2,7 @@ package cn.jerio.portal.controller;
 
 import cn.jerio.annotation.AccessLimit;
 import cn.jerio.constant.RedisKey;
-import cn.jerio.oder.service.MiaoshaService;
+import cn.jerio.product.service.MiaoshaService;
 import cn.jerio.oder.service.OrderService;
 import cn.jerio.pojo.MiaoshaOrder;
 import cn.jerio.pojo.MiaoshaUser;

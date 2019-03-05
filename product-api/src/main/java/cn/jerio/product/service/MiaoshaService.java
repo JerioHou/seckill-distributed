@@ -1,4 +1,4 @@
-package cn.jerio.oder.service;
+package cn.jerio.product.service;
 
 import cn.jerio.pojo.MiaoshaUser;
 import cn.jerio.pojo.OrderInfo;

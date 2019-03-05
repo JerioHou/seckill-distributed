@@ -1,4 +1,4 @@
-package cn.jerio.order.mq;
+package cn.jerio.product.mq;
 
 import cn.jerio.pojo.MiaoshaMessage;
 import org.springframework.amqp.core.AmqpTemplate;

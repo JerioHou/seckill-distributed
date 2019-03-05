@@ -32,6 +32,8 @@
         <module>user-api</module>
         <module>user-service</module>
         <module>portal-web</module>
+        <module>idGenerator</module>
+        <module>idGenerator-api</module>
     </modules>
 
     <build>
