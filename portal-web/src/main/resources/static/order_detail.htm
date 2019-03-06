@@ -56,7 +56,7 @@
         <td id="orderStatus">
         </td>  
         <td>
-        	<button class="btn btn-primary btn-block" type="submit" id="payButton">立即支付</button>
+        	<button class="btn btn-primary btn-block" type="button" id="payButton">立即支付</button>
         </td>
      </tr>
       <tr>
@@ -90,7 +90,29 @@ function render(detail){
 }
 
 $(function(){
+  var orderId = g_getQueryString("orderId");
 	getOrderDetail();
+  $("#payButton").on("click",function () {
+    $.ajax({
+      url:"/aliPay/preCreate",
+      type:"POST",
+      data:{
+        orderId:orderId
+      },
+      success:function (data) {
+        debugger
+        if(data.code == 0){
+          window.location.href = "/qr_info.htm?qr_filename="+data.data;
+        }else{
+          layer.msg(data.msg);
+        }
+      },
+      error:function(data){
+        layer.msg("客户端请求有误");
+      }
+    })
+
+  })
 })
 
 function getOrderDetail(){

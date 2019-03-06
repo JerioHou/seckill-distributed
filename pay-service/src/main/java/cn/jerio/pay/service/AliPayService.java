@@ -70,6 +70,7 @@ public class AliPayService implements AliPayApi {
             aliPreResult.setCode("-2");
             aliPreResult.setMsg("请求预创建接口失败");
         }
+        System.out.println(aliPreResult);
         return aliPreResult;
     }
 }

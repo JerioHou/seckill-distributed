@@ -16,7 +16,7 @@ public class PayServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {
-        aliPayService.precreate();
+        aliPayService.precreate(1L);
     }
 
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>扫码支付</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- jquery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+</head>
+<body>
+<div style="text-align: center">
+<img  id="qrImg" width="400" height="400" />
+
+</div>
+<script type="text/javascript" src="/js/common.js"></script>
+</body>
+<script>
+  var qr_filename = g_getQueryString("qr_filename");
+  var qr_parh = "/img/"+qr_filename;
+  $("#qrImg").attr("src", qr_parh);
+</script>
+</html>

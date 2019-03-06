@@ -48,6 +48,11 @@
             <version>1.2.38</version>
         </dependency>
         <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
             <groupId>cn.jerio</groupId>
             <artifactId>product-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
