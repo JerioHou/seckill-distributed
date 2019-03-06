@@ -72,5 +72,10 @@
             <artifactId>order-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>cn.jeiro</groupId>
+            <artifactId>pay-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 </project>
