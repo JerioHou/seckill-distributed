@@ -103,6 +103,11 @@ public class OrderServiceImpl implements OrderService{
         }
     }
 
+    @Override
+    public int updateOrderStatusById(OrderInfo orderInfo) {
+        return orderDao.updateOrderStatusById(orderInfo);
+    }
+
     private void setGoodsOver(Long goodsId) {
         redisTemplate.opsForValue().set(RedisKey.isGoodsOver +goodsId, true);
     }

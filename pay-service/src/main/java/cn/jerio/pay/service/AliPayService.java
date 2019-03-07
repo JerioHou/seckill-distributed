@@ -13,16 +13,25 @@ import com.alibaba.fastjson.JSON;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by Jerio on 2019/03/06
  */
 @Service
 public class AliPayService implements AliPayApi {
+
+    private static Logger logger = LoggerFactory.getLogger(AliPayService.class);
 
     private static AlipayClient alipayClient;
 
@@ -55,7 +64,7 @@ public class AliPayService implements AliPayApi {
         bizContent.setTotal_amount(totalAmount.toString());
 
         AlipayTradePrecreateRequest request = new AlipayTradePrecreateRequest();
-        request.setNotifyUrl("");
+        request.setNotifyUrl("http://yc2hpf.natappfree.cc/aliPay/alipay_callback");
         request.setBizContent(JSON.toJSONString(bizContent));
         //通过alipayClient调用API，获得对应的response类
         AlipayTradePrecreateResponse response = null;
@@ -63,8 +72,8 @@ public class AliPayService implements AliPayApi {
             response = alipayClient.execute(request);
             aliPreResult.setCode(response.getCode());
             aliPreResult.setMsg(response.getMsg());
-            aliPreResult.setOut_trade_no(response.getOutTradeNo());
-            aliPreResult.setQr_code(response.getQrCode());
+            aliPreResult.setOutTradeNo(response.getOutTradeNo());
+            aliPreResult.setQrCode(response.getQrCode());
         } catch (AlipayApiException e) {
             e.printStackTrace();
             aliPreResult.setCode("-2");
@@ -72,5 +81,47 @@ public class AliPayService implements AliPayApi {
         }
         System.out.println(aliPreResult);
         return aliPreResult;
+    }
+
+    @Override
+    public boolean checkCallbackParams(Map<String, String> params) {
+        try {
+            return AlipaySignature.rsaCheckV2(params, AliPayConfig.getAlipayPublicKey(),"utf-8",AliPayConfig.getSignType());
+        } catch (AlipayApiException e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean doCallback(Map<String,String> params) {
+
+        String totalAmount = params.get("total_amount");
+        String outTradeNo = params.get("out_trade_no");
+        String paymentTime = params.get("gmt_payment");
+        OrderInfo orderInfo = orderService.getOrderById(Long.valueOf(outTradeNo));
+        if (orderInfo == null)
+            return false;
+        Double goodsPrice = orderInfo.getGoodsPrice();
+        Integer goodsCount = orderInfo.getGoodsCount();
+        BigDecimal totalAmountDb = BigDecimalUtil.mul(Double.valueOf(goodsCount.toString()), goodsPrice);
+        if (!totalAmount.equals(totalAmountDb.toEngineeringString()))
+            return false;
+        OrderInfo updateInfo = new OrderInfo();
+        updateInfo.setId(orderInfo.getId());
+        updateInfo.setStatus(1);
+        SimpleDateFormat sdf =  new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+        Date payDate;
+        try {
+            payDate = sdf.parse(paymentTime);
+        } catch (ParseException e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+        updateInfo.setPayDate(payDate);
+        orderService.updateOrderStatusById(updateInfo);
+        return true;
     }
 }

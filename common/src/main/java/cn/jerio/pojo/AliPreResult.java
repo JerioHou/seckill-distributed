@@ -12,7 +12,7 @@ public class AliPreResult implements Serializable{
 
     private String code;
     private String msg;
-    private String out_trade_no;
-    private String qr_code;
+    private String outTradeNo;
+    private String qrCode;
 
 }

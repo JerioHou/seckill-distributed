@@ -19,4 +19,6 @@ public interface OrderService {
     OrderInfo miaosha(MiaoshaUser user, GoodsVo goods);
 
     long getMiaoshaResult(Long userId, long goodsId);
+
+    int updateOrderStatusById(OrderInfo orderInfo);
 }

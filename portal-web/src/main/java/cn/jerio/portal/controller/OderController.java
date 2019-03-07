@@ -49,4 +49,13 @@ public class OderController {
         vo.setGoods(goods);
         return Result.success(vo);
     }
+    @RequestMapping("/payResult")
+    @ResponseBody
+    public Result<Integer> info( @RequestParam("orderId") long orderId) {
+        OrderInfo order = orderService.getOrderById(orderId);
+        if(order == null) {
+            return Result.error(CodeMsg.ORDER_NOT_EXIST);
+        }
+        return Result.success(order.getStatus());
+    }
 }

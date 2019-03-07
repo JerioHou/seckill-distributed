@@ -16,7 +16,32 @@
 </body>
 <script>
   var qr_filename = g_getQueryString("qr_filename");
-  var qr_parh = "/img/"+qr_filename;
-  $("#qrImg").attr("src", qr_parh);
+  var orderId = g_getQueryString("orderId");
+  var getPayResult;
+  $(function(){
+    var qr_parh = "/img/"+qr_filename;
+    $("#qrImg").attr("src", qr_parh);
+    getPayResult = setInterval("finish_pay()",1000);
+  })
+
+  function finish_pay() {
+
+    $.ajax({
+      url:"/order/payResult",
+      type:"POST",
+      data:{
+        orderId:orderId
+      },
+      success:function (data) {
+        if (data.code == 0 && data.data == 1){
+          clearInterval(getPayResult);
+          window.location.href="/order_detail.htm?orderId="+orderId;
+        }
+      },
+      error:function(data){
+        layer.msg("客户端请求有误");
+      }
+    })
+  }
 </script>
 </html>

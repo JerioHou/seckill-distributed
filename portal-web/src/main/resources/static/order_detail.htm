@@ -84,6 +84,7 @@ function render(detail){
 		status = "未支付"
 	}else if(order.status == 1){
 		status = "待发货";
+    $("#payButton").hide();
 	}
 	$("#orderStatus").text(status);
 	
@@ -100,9 +101,8 @@ $(function(){
         orderId:orderId
       },
       success:function (data) {
-        debugger
         if(data.code == 0){
-          window.location.href = "/qr_info.htm?qr_filename="+data.data;
+          window.location.href = "/qr_info.htm?qr_filename="+data.data+"&orderId="+orderId;
         }else{
           layer.msg(data.msg);
         }

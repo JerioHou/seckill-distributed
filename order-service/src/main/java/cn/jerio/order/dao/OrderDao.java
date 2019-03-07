@@ -24,4 +24,7 @@ public interface OrderDao {
 
     @Select("select * from order_info where id = #{orderId}")
     public OrderInfo getOrderById(@Param("orderId")long orderId);
+
+    @Update("update order_info set status = #{status},pay_date = #{payDate} where id = #{id}")
+    int updateOrderStatusById(OrderInfo orderInfo);
 }
