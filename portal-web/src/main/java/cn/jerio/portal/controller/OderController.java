@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/order")
+//@CrossOrigin(origins="http://localhost:8888",allowCredentials="true")
 public class OderController {
 
     @Reference
