@@ -28,6 +28,7 @@
         <module name="idGenerator-api" />
         <module name="order-api" />
         <module name="order-service" />
+        <module name="pagegenerator" />
         <module name="pageGenerator" />
         <module name="pay-api" />
         <module name="pay-service" />
@@ -50,6 +51,7 @@
       <module name="order-service" target="1.8" />
       <module name="order-web" target="1.8" />
       <module name="pageGenerator" target="1.8" />
+      <module name="pagegenerator" target="1.8" />
       <module name="pay-api" target="1.8" />
       <module name="pay-service" target="1.8" />
       <module name="portal-web" target="1.8" />

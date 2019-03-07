@@ -108,6 +108,11 @@ public class OrderServiceImpl implements OrderService{
         return orderDao.updateOrderStatusById(orderInfo);
     }
 
+    @Override
+    public int closeOrder(Date deadLine) {
+        return orderDao.colseOrder(deadLine);
+    }
+
     private void setGoodsOver(Long goodsId) {
         redisTemplate.opsForValue().set(RedisKey.isGoodsOver +goodsId, true);
     }

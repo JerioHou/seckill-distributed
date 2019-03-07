@@ -8,7 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/idGenerator-api/idGenerator-api.iml" filepath="$PROJECT_DIR$/idGenerator-api/idGenerator-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/order-api/order-api.iml" filepath="$PROJECT_DIR$/order-api/order-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/order-service/order-service.iml" filepath="$PROJECT_DIR$/order-service/order-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pageGenerator/pageGenerator.iml" filepath="$PROJECT_DIR$/pageGenerator/pageGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pageGenerator/pagegenerator.iml" filepath="$PROJECT_DIR$/pageGenerator/pagegenerator.iml" />
       <module fileurl="file://$PROJECT_DIR$/pay-api/pay-api.iml" filepath="$PROJECT_DIR$/pay-api/pay-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/pay-service/pay-service.iml" filepath="$PROJECT_DIR$/pay-service/pay-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/portal-web/portal-web.iml" filepath="$PROJECT_DIR$/portal-web/portal-web.iml" />

@@ -2,7 +2,10 @@ package cn.jerio.order.dao;
 
 import cn.jerio.pojo.MiaoshaOrder;
 import cn.jerio.pojo.OrderInfo;
+import lombok.Data;
 import org.apache.ibatis.annotations.*;
+
+import java.util.Date;
 
 
 /**
@@ -27,4 +30,7 @@ public interface OrderDao {
 
     @Update("update order_info set status = #{status},pay_date = #{payDate} where id = #{id}")
     int updateOrderStatusById(OrderInfo orderInfo);
+
+    @Update("update order_info set status = -1 where create_date < #{deadline} and status = 0")
+    int colseOrder(Date deadline);
 }
