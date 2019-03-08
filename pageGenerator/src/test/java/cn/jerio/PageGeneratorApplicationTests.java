@@ -16,7 +16,7 @@ public class PageGeneratorApplicationTests {
 
 	@Test
 	public void contextLoads() {
-        pageGenerator.generatorHtml(1L);
+        pageGenerator.generatorHtml(2L);
 	}
 
 }

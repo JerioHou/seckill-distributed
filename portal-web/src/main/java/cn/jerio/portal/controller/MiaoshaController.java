@@ -40,7 +40,7 @@ import static cn.jerio.util.ImageUtil.calc;
  */
 @Controller
 @RequestMapping("/miaosha")
-//@CrossOrigin(origins="http://localhost:8888",allowCredentials="true")
+@CrossOrigin(origins="http://www.static.miaosha.com:8081",allowCredentials="true")
 public class MiaoshaController implements InitializingBean {
 
     @Reference
@@ -83,7 +83,7 @@ public class MiaoshaController implements InitializingBean {
     @AccessLimit
     @RequestMapping(value="/{path}/do_miaosha", method= RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin("http://localhost:8888")
+//    @CrossOrigin("http://www.static.com:8081")
     public Result<Integer> miaosha(Model model,MiaoshaUser user,
                                    @PathVariable("path")String path,
                                    @RequestParam("goodsId")long goodsId) {
@@ -167,7 +167,7 @@ public class MiaoshaController implements InitializingBean {
             return Result.error(CodeMsg.MIAOSHA_FAIL);
         }
     }
-    @CrossOrigin(origins="http://localhost:8888",allowCredentials="true")
+//    @CrossOrigin(origins="http://www.static.com:8081",allowCredentials="true")
     @HystrixCommand(fallbackMethod = "getMiaoshaPathFallback")
     @AccessLimit(rateLimiter = true,rateLimiterName = "getMiaoshaPath",rateLimiterValue = 200.0)
     @RequestMapping(value="/path", method=RequestMethod.GET)

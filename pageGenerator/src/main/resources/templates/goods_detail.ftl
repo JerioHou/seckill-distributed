@@ -89,8 +89,12 @@
     var goodsId = $("#goodsId").val();
     g_showLoading();
     $.ajax({
-      url: "/miaosha/path",
+      url: "http://www.miaosha.com/miaosha/path",
       type: "GET",
+      xhrFields: {
+        withCredentials: true
+      },
+      crossDomain: true,
       data: {
         goodsId: goodsId,
         verifyCode: $("#verifyCode").val()
@@ -112,8 +116,12 @@
   function getMiaoshaResult(goodsId) {
     g_showLoading();
     $.ajax({
-      url: "/miaosha/result",
+      url: "http://www.miaosha.com/miaosha/result",
       type: "GET",
+      xhrFields: {
+        withCredentials: true
+      },
+      crossDomain: true,
       data: {
         goodsId: $("#goodsId").val(),
       },
@@ -129,7 +137,7 @@
           } else {
             layer.confirm("恭喜你，秒杀成功！查看订单？", {btn: ["确定", "取消"]},
                     function () {
-                      window.location.href = "/order_detail.htm?orderId=" + result;
+                      window.location.href = "http://www.miaosha.com/order_detail.htm?orderId=" + result;
                     },
                     function () {
                       layer.closeAll();
@@ -147,14 +155,17 @@
 
   function doMiaosha(path) {
     $.ajax({
-      url: "/miaosha/" + path + "/do_miaosha",
+      url: "http://www.miaosha.com/miaosha/" + path + "/do_miaosha",
       type: "POST",
+      xhrFields: {
+        withCredentials: true
+      },
+      crossDomain: true,
       data: {
         goodsId: $("#goodsId").val()
       },
       success: function (data) {
         if (data.code == 0) {
-          //window.location.href="/order_detail.htm?orderId="+data.data.id;
           getMiaoshaResult($("#goodsId").val());
         } else {
           layer.msg(data.msg);
@@ -193,7 +204,7 @@
         clearTimeout(timeout);
       }
       $("#miaoshaTip").html("秒杀进行中");
-      $("#verifyCodeImg").attr("src", "/miaosha/verifyCode?goodsId=" + $("#goodsId").val());
+      $("#verifyCodeImg").attr("src", "http://www.miaosha.com/miaosha/verifyCode?goodsId=" + $("#goodsId").val());
       $("#verifyCodeImg").show();
       $("#verifyCode").show();
     } else {//秒杀已经结束
@@ -204,7 +215,7 @@
     }
   }
   function refreshVerifyCode() {
-    $("#verifyCodeImg").attr("src", "/miaosha/verifyCode?goodsId=" + $("#goodsId").val() + "&timestamp=" + new Date().getTime());
+    $("#verifyCodeImg").attr("src", "http://www.miaosha.com/miaosha/verifyCode?goodsId=" + $("#goodsId").val() + "&timestamp=" + new Date().getTime());
   }
 </script>
 </html>

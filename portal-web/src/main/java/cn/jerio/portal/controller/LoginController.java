@@ -42,6 +42,7 @@ public class LoginController {
     private void addCookie(HttpServletResponse response,String token){
         Cookie cookie = new Cookie("token",token);
         cookie.setMaxAge(24*60*60);
+        cookie.setDomain("miaosha.com");
         cookie.setPath("/");
         response.addCookie(cookie);
     }
