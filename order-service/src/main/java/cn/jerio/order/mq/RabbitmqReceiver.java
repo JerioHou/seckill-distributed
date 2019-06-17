@@ -43,10 +43,10 @@ public class RabbitmqReceiver {
         long goodsId = message.getGoodsId();
 
         //再次判断库存
-        int stock =  Integer.parseInt(stringRedisTemplate.opsForValue().get(RedisKey.MiaoshaGoodsStock+ goodsId));
-        if (stock <= 0) {
-            return;
-        }
+//        int stock =  Integer.parseInt(stringRedisTemplate.opsForValue().get(RedisKey.MiaoshaGoodsStock+ goodsId));
+//        if (stock <= 0) {
+//            return;
+//        }
         //判断是否已经秒杀到了
         MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdGoodsId(user.getId(), goodsId);
         if (order != null) {

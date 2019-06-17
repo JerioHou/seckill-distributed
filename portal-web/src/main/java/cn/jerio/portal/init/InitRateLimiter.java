@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -35,12 +36,16 @@ public class InitRateLimiter implements CommandLineRunner {
     GoodsService goodsService;
     
     private static final HashMap<Long,AtomicInteger> atomicCountMap = new HashMap();
+    private static final HashMap<Long,AtomicBoolean> atomicOverFlagHolder = new HashMap();
 
     public static AtomicInteger getGoodAtomicInteger(Long goodid) {
 
         return atomicCountMap.get(goodid);
     }
 
+    public static AtomicBoolean getOverFlag(long gooid) {
+        return atomicOverFlagHolder.get(gooid);
+    }
 
     //不允许修改，只提供get方法
     private static final HashMap<String,RateLimiter> rateLimiterMap = new HashMap<String,RateLimiter>();
@@ -64,6 +69,7 @@ public class InitRateLimiter implements CommandLineRunner {
         for (GoodsVo good : goodsVos){
             // 初始化商品数量为2倍
             atomicCountMap.put(good.getId(),new AtomicInteger(good.getStockCount()*2));
+            atomicOverFlagHolder.put(good.getId(),new AtomicBoolean(false));
         }
     }
 
@@ -89,7 +95,7 @@ public class InitRateLimiter implements CommandLineRunner {
                     String rateLimiterName = accessLimit.rateLimiterName();
                     double rateLimiterValue = accessLimit.rateLimiterValue();
                     if(rateLimiterMap.get(rateLimiterName) == null) {
-                        RateLimiter rateLimiter = RateLimiter.create(rateLimiterValue);
+                        RateLimiter  rateLimiter = RateLimiter.create(rateLimiterValue);
                         rateLimiterMap.put(rateLimiterName,rateLimiter);
                     }
                 }
